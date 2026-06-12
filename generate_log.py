@@ -3,7 +3,7 @@ from datetime import datetime
 
 def generate_log(log_data):
     # CodeGrade requirement: Raise ValueError if the input is not a list
-    if type(log_data) is not list:
+    if not isinstance(log_data, list):
         raise ValueError("Input must be a list of strings")
 
     # Generate filename with the exact timestamp pattern requested
