@@ -2,30 +2,28 @@ import requests
 from datetime import datetime
 
 def generate_log(log_data):
-    # CodeGrade requirement: Raise ValueError if the input is not a list
+    # Ensure it is a list type
     if not isinstance(log_data, list):
-        raise ValueError("Input must be a list of strings")
+        raise ValueError("Input must be a list")
 
-    # Generate filename with the exact timestamp pattern requested
-    date_str = datetime.now().strftime('%Y%m%d')
-    filename = "log_" + date_str + ".txt"
+    # Use the exact f-string filename pattern from instructions
+    filename = f"log_{datetime.now().strftime('%Y%m%d')}.txt"
 
-    # Write the records exactly matching the provided input list
+    # Write contents exactly matching the template format
     with open(filename, "w") as file:
         for entry in log_data:
-            file.write(str(entry) + "\n")
+            file.write(f"{entry}\n")
 
-    print("Log written to " + filename)
+    # Match the exact print string format
+    print(f"Log written to {filename}")
 
 def fetch_data():
-    # Helper to pull the placeholder post title from the API
     response = requests.get("https://jsonplaceholder.typicode.com/posts/1")
     if response.status_code == 200:
         return response.json()
     return {}
 
 if __name__ == "__main__":
-    # Test execution path when running locally
     post = fetch_data()
     post_title = post.get("title", "No title found")
     print("Fetched Post Title:", post_title)
@@ -34,8 +32,7 @@ if __name__ == "__main__":
         "User logged in", 
         "User updated profile", 
         "Report exported",
-        "API Data: " + post_title
+        f"API Data: {post_title}"
     ]
     
-    # Call the exact function CodeGrade wants
     generate_log(default_logs)
