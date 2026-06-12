@@ -2,7 +2,7 @@ import requests
 from datetime import datetime
 
 def generate_log(log_data):
-    # Ensure input is a list type
+    # Ensure it is a list type
     if not isinstance(log_data, list):
         raise ValueError("Input must be a list")
 
@@ -18,7 +18,7 @@ def generate_log(log_data):
     print(f"Log written to {filename}")
 
 def fetch_data():
-    # Fixed: added response assignment back here
+    # Fixed: Assigned the requests output directly to the response variable
     response = requests.get("https://jsonplaceholder.typicode.com/posts/1")
     if response.status_code == 200:
         return response.json()
